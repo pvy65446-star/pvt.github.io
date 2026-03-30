@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Báo Tường Pastel</title>
+
+<style>
+body{
+    margin:0;
+    padding:40px;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#f6f2ff,#fde2e4);
+}
+
+.baotuong{
+    max-width:1100px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:30px;
+    padding:40px;
+    border:8px dashed #cdb4db;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    font-size:56px;
+    color:#ffafcc;
+    margin:0;
+}
+
+.header p{
+    color:#777;
+    font-size:18px;
+}
+
+.decor{
+    text-align:center;
+    font-size:26px;
+    margin:20px 0;
+}
+
+.photo{
+    width:85%;
+    height:240px;
+    margin:25px auto;
+    border-radius:20px;
+    border:6px dotted #a2d2ff;
+    background:#f8fbff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-style:italic;
+}
+
+.content{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+}
+
+
+.box{
+    background:#f8f9ff;
+    border-radius:18px;
+    padding:22px;
+    border-left:10px solid #a2d2ff;
+    position:relative;
+}
+
+.box h2{
+    margin-top:0;
+    color:#9b5de5;
+}
+
+.link-icon{
+    position:absolute;
+    bottom:12px;
+    right:15px;
+    font-size:26px;
+    text-decoration:none;
+    transition:transform 0.2s;
+}
+
+.link-icon:hover{
+    transform:scale(1.3);
+}
+
+.poem{
+    background:#fff1fa;
+    border-left-color:#ffafcc;
+}
+
+.quote{
+    background:#f0fff4;
+    border-left-color:#b8f2e6;
+    font-style:italic;
+}
+
+.wish{
+    background:#fffbea;
+    border-left-color:#ffd166;
+}
+
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.modal-content{
+    background:#fff;
+    width:70%;
+    max-height:85%;
+    margin:5% auto;
+    padding:30px;
+    border-radius:25px;
+    overflow-y:auto;
+}
+
+.close{
+    float:right;
+    font-size:32px;
+    cursor:pointer;
+    color:#ff6f91;
+}
+
+.poem-item{
+    text-align:center;
+    margin-bottom:30px;
+    background:#fef6ff;
+    padding:20px;
+    border-radius:18px;
+}
+
+.poem-item img{
+    width:100%;
+    max-width:520px;
+    height:260px;
+    object-fit:cover;
+    border-radius:6px;
+    border:4px solid #ffc8dd;
+    margin-bottom:14px;
+}
+
+
+.poem-item p{
+    margin:0;
+    line-height:1.7;
+    white-space: pre-line;
+}
+
+.footer{
+    margin-top:35px;
+    padding-top:20px;
+    border-top:2px dashed #ddd;
+    text-align:center;
+    color:#777;
+    font-size:15px;
+}
+
+.footer a{
+    text-decoration:none;
+    color:#9b5de5;
+    font-weight:600;
+}
+
+.footer a:hover{
+    text-decoration:underline;
+}
+
+.produced{
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:2px;
+    animation: colorFlash 2s infinite;
+}
+
+@keyframes colorFlash{
+    0%{ color:#ff5d8f; }
+    25%{ color:#f72585; }
+    50%{ color:#7209b7; }
+    75%{ color:#4cc9f0; }
+    100%{ color:#ff5d8f; }
+}
+
+.wish-item{
+    text-align:center;
+    margin-bottom:25px;
+    background:#fff0f6;
+    padding:22px;
+    border-radius:18px;
+}
+
+.wish-item img{
+    width:100%;
+    max-width:480px;
+    height:240px;
+    object-fit:cover;
+    border-radius:12px;
+    border:4px solid #ffd6e0;
+    margin-bottom:15px;
+}
+
+.wish-item p{
+    margin:0;
+    line-height:1.7;
+    font-size:16px;
+}
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.work-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:#fff0f6;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.work-table th{
+    background:#ffb3c6;
+    color:#fff;
+    padding:14px;
+    font-size:16px;
+}
+
+.work-table td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ffd6e0;
+    color:#555;
+}
+
+.work-table tr:last-child td{
+    border-bottom:none;
+}
+
+.intro-item{
+    text-align:center;
+    background:#fff0f6;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.intro-item img{
+    width:100%;
+    max-width:500px;
+    height:260px;
+    object-fit:cover;
+    border-radius:14px;
+    border:4px solid #ffc8dd;
+    margin-bottom:15px;
+}
+
+.intro-item p{
+    font-size:16px;
+    line-height:1.8;
+    color:#555;
+}
+
+.header h1{
+    font-family: "Pacifico", cursive;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0px #ffd6e0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="baotuong">
+
+    <div class="header">
+        <h1>📸 BÁO THANH XUÂN 12A1 🎞️</h1>
+        <p>Tri ân thầy cô – Chào mừng ngày 20/11</p>
+    </div>
+
+    <div class="decor">🌷 ✨ 🌼 ✨ 🌷</div>
+
+    <div class="photo">
+    <img src="p11.jpg" alt="Ảnh lớp / thầy cô">
+</div>
+
+   
+
+    <div class="content">
+
+        <div class="box">
+            <h2>📝 Lời Ngỏ</h2>
+            <p>Dưới mái trường thân yêu, thầy cô là người lái đò thầm lặng.</p>
+            <a class="link-icon" href="javascript:void(0)" onclick="openIntro()">🌹</a>
+
+
+            <h2>🌱 Bài Giảng</h2>
+            <p>Mỗi nét chữ trên bảng là một hạt mầm tri thức.</p>
+        </div>
+
+        <div>
+            <div class="box poem">
+                <h2>✒️ Góc Thơ</h2>
+                <p>Bụi phấn rơi nhẹ tháng năm dài…</p>
+                <a class="link-icon" href="javascript:void(0)" onclick="openPoem()" title="Mở sổ thơ">📒</a>
+            </div>
+
+            <div class="box quote" style="margin-top:20px;">
+                <h2>💬 Danh Ngôn</h2>
+                <p>“Người thầy vĩ đại là người chạm đến trái tim.”</p>
+                <a class="link-icon" href="danh ngon X.html">✨</a>
+            </div>
+
+            <div class="box wish" style="margin-top:20px;">
+                <h2>💌 Lời Chúc</h2>
+                <p>Kính chúc thầy cô luôn mạnh khỏe.</p>
+                <a class="link-icon" href="javascript:void(0)" onclick="openWish()">🩷</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span class="produced">---PRODUCED BY---</span><br>
+        🌻Dương Ngọc Minh Thơ🌻,<br>
+        🌺Nguyễn Hồng Phượng Vỹ🌺,<br>
+        🎀Bùi Hồng Phượng🎀.<br><br>
+        <a href="javascript:void(0)" onclick="openWork()">📋 Xem bảng phân công công việc</a>
+
+    </div>
+</div>
+
+<div id="poemModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePoem()">×</span>
+
+    <h2>📖 Góc Thơ Tri Ân Thầy Cô</h2>
+
+    <div class="poem-item">
+      <img src="p1.jpg">
+      <p><b>📌 Bài thơ 1</b><br>
+Tuổi thanh xuân như cơn gió đầu mùa
+Thoảng qua tóc, qua tim người rất khẽ
+Chưa kịp gọi đã vội xa tầm với
+Để bâng khuâng khi ngoảnh lại phía sau.
+      </p>
+    </div>
+
+    <div class="poem-item">
+      <img src="p2.jpg">
+      <p><b>📌 Bài thơ 2</b><br>
+Rồi một ngày khi bước khỏi sân trường
+Mới hiểu hết những điều xưa bé nhỏ
+Hóa ra đó là tháng năm rất rõ
+Rõ một thời đã rất trong veo.
+      </p>
+    </div>
+
+    <div class="poem-item">
+      <img src="p3.jpg">
+      <p><b>📌 Bài thơ 3</b><br>
+Tuổi trẻ đi qua chẳng đợi một ai
+Như mây trắng trôi ngang trời rất vội
+Nhưng nếu đã từng yêu, từng mơ, từng sống
+Thì thanh xuân ấy đã đủ tròn đầy.
+      </p>
+    </div>
+  </div>
+</div>
+<div id="wishModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeWish()">×</span>
+
+    <h2>💌 Lời Chúc Tri Ân Thầy Cô</h2>
+
+    <div class="wish-item">
+      <img src="p4.jpg">
+      <p><b>🌟Dành cho cô Như Anh🌟</b><br>
+        Những năm tháng dưới mái trường này sẽ mãi là quãng thời gian đẹp nhất trong thanh xuân của chúng em. Cô không chỉ là cô mà còn là một người mẹ hiền dạy chúng em tri thức, dạy cách làm người, cách sống tử tế và biết ước mơ. Nhân ngày 20/11, chúng em xin gửi đến cô lời tri ân chân thành nhất. Chúc cô luôn mạnh khỏe, hạnh phúc và mãi giữ trong tim ngọn lửa yêu nghề để tiếp tục dìu dắt bao thế hệ học trò trên con đường tương lai.
+      </p>
+    </div>
+
+    <div class="wish-item">
+      <img src="p5.jpg">
+      <p><b>❣️Dành cho tất cả thầy cô❣️</b><br>
+        Thời gian rồi sẽ trôi qua, chúng em rồi sẽ rời xa mái trường thân yêu, nhưng hình ảnh thầy cô tận tụy bên bục giảng sẽ mãi khắc sâu trong ký ức. Những bài học hôm nay không chỉ theo chúng em trong những trang vở, mà còn theo suốt chặng đường đời sau này. Nhân ngày Nhà giáo Việt Nam 20/11, chúng em kính chúc thầy cô luôn bình an, nhiều niềm vui và gặt hái thật nhiều thành công trong sự nghiệp trồng người cao quý.
+      </p>
+    </div>
+
+  </div>
+</div>
+<div id="workModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeWork()">×</span>
+
+    <h2>📋 Bảng Phân Công Công Việc</h2>
+
+    <table class="work-table">
+      <tr>
+        <th>Họ và tên</th>
+        <th>Lớp</th>
+        <th>Công việc</th>
+      </tr>
+      <tr>
+        <td>Dương Ngọc Minh Thơ</td>
+        <td>12A1</td>
+        <td>Viết code trang báo, thiết kế, sưu tầm danh ngôn, hình ảnh, bảng phân công</td>
+      </tr>
+      <tr>
+        <td>Bùi Hồng Phượng</td>
+        <td>12A1</td>
+        <td>Viết code các topic, thiết kế, lời chúc, lời ngỏ, bài giảng, hình ảnh, bảng phân công</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Hồng Phượng Vỹ</td>
+        <td>12A1</td>
+        <td>Viết code trang báo, thiết kế, sưu tầm thơ, hình ảnh, bảng phân công</td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+<div id="introModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeIntro()">×</span>
+
+    <h2>📝 Lời Ngỏ</h2>
+
+    <div class="intro-item">
+      <img src="p6.jpg">
+      <p>
+        Dưới mái trường thân yêu, mỗi ngày đến lớp là một ngày chúng em được sống trong yêu thương và sự dìu dắt tận tình của thầy cô.
+        Những bài giảng không chỉ mang tri thức, mà còn gieo vào lòng chúng em những ước mơ, niềm tin và khát vọng vươn lên trong cuộc sống.
+      </p>
+    </div>
+    <h2>🌱 Bài Giảng</h2>
+    <div class="intro-item">
+      <img src="p7.jpg">
+      <p><b>📐 Môn toán</b><br>
+
+    <div class="intro-item">
+      <img src="p8.jpg">
+      <p><b>📒 Môn văn</b><br>
+
+    <div class="intro-item">
+      <img src="p9.jpg">
+      <p><b>🧭 Môn lý</b><br>
+
+    <div class="intro-item">
+      <img src="p10.jpg">
+      <p><b>🔬 Môn hóa</b><br>
+    </div>
+
+<p class="essay-text">
+Mỗi bài giảng trên bảng là một hạt mầm gieo cho chúng em.
+Từ những con chữ đầu tiên, những con số khô khan đến những bài học làm người,
+tất cả đều được thầy cô kiên nhẫn vun trồng bằng cả tâm huyết và yêu thương.
+</p>
+
+
+</div>
+
+
+
+
+<script>
+function openPoem(){
+    document.getElementById("poemModal").style.display = "block";
+}
+function closePoem(){
+    document.getElementById("poemModal").style.display = "none";
+}
+function openWish(){
+    document.getElementById("wishModal").style.display = "block";
+}
+function closeWish(){
+    document.getElementById("wishModal").style.display = "none";
+}
+function openWork(){
+    document.getElementById("workModal").style.display = "block";
+}
+function closeWork(){
+    document.getElementById("workModal").style.display = "none";
+}
+function openIntro(){
+    document.getElementById("introModal").style.display = "block";
+}
+function closeIntro(){
+    document.getElementById("introModal").style.display = "none";
+}
+
+
+
+</script>
+
+</body>
+</html>
